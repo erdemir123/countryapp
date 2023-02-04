@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Country from "./components/Country";
 import { CountryType } from "./types";
 
 function App() {
@@ -22,15 +23,13 @@ function App() {
     getCountries();
   }, []);
   console.log("load", load);
-  console.log(countries);
+  console.log(countries.map((item)=>item.languages[0].name));
   return (
     <div className="App">
-      {load && "sadık"}
+      {load && "Loading..."}
       {countries.map((country) => {
         return(
-          <p>
-            {country.name} / {country.capital}
-          </p>
+          <Country country={country}/>
         )
       })}
     </div>
